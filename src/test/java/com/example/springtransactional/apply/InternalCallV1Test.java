@@ -32,7 +32,8 @@ public class InternalCallV1Test {
     }
 
     @TestConfiguration
-    static class InternalCallV1Config {
+    static class InternalCallV1TestConfig {
+
         @Bean
         CallService callService() {
             return new CallService();
@@ -44,6 +45,8 @@ public class InternalCallV1Test {
         public void external() {
             log.info("call external");
             printTxInfo();
+
+            // 문제점 발생
             internal();
         }
 
@@ -58,4 +61,6 @@ public class InternalCallV1Test {
             log.info("tx active={}", txActive);
         }
     }
+
+
 }
